@@ -2,18 +2,18 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = "ap-south-1"
-        ECR_REPO = "009160029390.dkr.ecr.ap-south-1.amazonaws.com/testrepo"
+        AWS_REGION = "us-east-1"
+        ECR_REPO = "089117447107.dkr.ecr.us-east-1.amazonaws.com/testrepo"
         IMAGE_TAG = "latest"
         IMAGE_NAME = "${ECR_REPO}:${IMAGE_TAG}"
-        REMOTE_HOST = "ec2-user@35.154.15.34"
+        REMOTE_HOST = "ec2-user@98.93.28.167"
         REMOTE_APP_NAME = "httpd-app"
     }
 
     stages {
         stage('Checkout from GitHub') {
             steps {
-                git branch: 'main', url: 'https://github.com/chinabudhi123/project-4.git'
+                git branch: 'main', url: 'https://github.com/subratgithub/project-4.git'
             }
         }
 
@@ -40,13 +40,13 @@ pipeline {
 
         stage('Manual Approval') {
             steps {
-                input message: "Approve deployment to EC2 at 35.154.15.34?", ok: "Deploy"
+                input message: "Approve deployment to EC2 at 98.93.28.167?", ok: "Deploy"
             }
         }
 
         stage('Deploy to EC2') {
             steps {
-                sshagent(credentials: ['ssh-access-key']) {
+                sshagent(credentials: ['access-key']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no $REMOTE_HOST '
                             aws ecr get-login-password --region $AWS_REGION | \
