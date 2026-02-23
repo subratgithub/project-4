@@ -46,7 +46,7 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                sshagent(credentials: ['access-key']) {
+                sshagent(credentials: ['ssh-acceskey']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no $REMOTE_HOST '
                             aws ecr get-login-password --region $AWS_REGION | \
