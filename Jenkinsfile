@@ -6,7 +6,7 @@ pipeline {
         ECR_REPO = "089117447107.dkr.ecr.us-east-1.amazonaws.com/testrepo"
         IMAGE_TAG = "latest"
         IMAGE_NAME = "${ECR_REPO}:${IMAGE_TAG}"
-        REMOTE_HOST = "ec2-user@98.93.28.167"
+        REMOTE_HOST = "ec2-user@3.84.135.241"
         REMOTE_APP_NAME = "httpd-app"
     }
 
